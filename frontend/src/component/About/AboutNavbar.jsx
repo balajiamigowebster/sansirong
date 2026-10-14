@@ -23,6 +23,7 @@ function AboutNavbar() {
     // { title: "LAUNGUAGE INTERPRETATION", to: "/launguage" },
     { title: "CONTACT", to: "/contact" },
     { title: "CAREERS", to: "/careers" },
+    { title: "DASHBOARD", to: "/dashboard" },
   ];
 
   const mobNavitems = [
@@ -35,6 +36,7 @@ function AboutNavbar() {
     { title: "LANGUAGE INTERPRETATION", to: "/language" },
     { title: "CONTACT", to: "/contact" },
     { title: "CAREERS", to: "/careers" },
+    { title: "DASHBOARD", to: "/dashboard" },
   ];
 
   useEffect(() => {
@@ -167,6 +169,16 @@ function AboutNavbar() {
           </div>
         ))}
 
+        <a
+          href="https://checkinplus.cloud/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={closeMenu}
+          className="text-[13px] px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-lg flex items-center"
+        >
+          Attendance & Report
+        </a>
+
         {/* <div>
           <Launguage />
         </div> */}
@@ -206,6 +218,15 @@ function AboutNavbar() {
             )}
           </div>
         ))}
+        <a
+          href="https://checkinplus.cloud/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={closeMenu}
+          className="text-[14px] px-4 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-md text-center"
+        >
+          Attendance & Report
+        </a>
       </div>
     </nav>
   );

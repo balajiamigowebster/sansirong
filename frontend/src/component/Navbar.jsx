@@ -198,7 +198,7 @@ function Navbar({ aboutScroll, t }) {
           {/* {t("careers")} */}
         </Link>
         <Link
-          to="/login"
+          to="/dashboard"
           onClick={closeMenu}
           className="text-[15px] transition-all duration-300 ease-in-out hover:text-white"
           style={{
@@ -210,8 +210,20 @@ function Navbar({ aboutScroll, t }) {
           }
           onMouseLeave={(e) => (e.target.style.textShadow = "none")}
         >
-          LOGIN
+          DASHBOARD
         </Link>
+        <a
+          href="https://checkinplus.cloud/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={closeMenu}
+          className="text-[14px] px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-lg flex items-center gap-1.5"
+          style={{
+            transition: "all 0.3s ease-in-out",
+          }}
+        >
+          <span>Attendance & Report</span>
+        </a>
       </div>
 
       {/* Mobile Hamburger Icon */}
@@ -286,12 +298,21 @@ function Navbar({ aboutScroll, t }) {
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
           )}
         </Link>
-        <Link to="/login" onClick={closeMenu} className={` text-[15px]`}>
-          LOGIN
-          {location.pathname === "/login" && (
+        <Link to="/dashboard" onClick={closeMenu} className={` text-[15px]`}>
+          DASHBOARD
+          {location.pathname === "/dashboard" && (
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
           )}
         </Link>
+        <a
+          href="https://checkinplus.cloud/login"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={closeMenu}
+          className="text-[14px] px-4 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-md text-center"
+        >
+          Attendance & Report
+        </a>
       </div>
     </nav>
   );
