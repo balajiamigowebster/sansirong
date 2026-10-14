@@ -270,17 +270,19 @@ const About = ({ t }) => {
             {t("meetourteam")}
           </h2>
           <div className="flex justify-center">
-            <div className="bg-white md:max-w-[300px]  flex flex-col items-center justify-center  rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
-              <img
-                src="/hr/h3.jpeg"
-                alt="Managing Director"
-                className="w-full h-96 md:w-[300px] object-cover"
-              />
+            <div className="bg-white w-full max-w-[360px] md:max-w-[420px] flex flex-col items-center justify-center rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition duration-300">
+              <div className="w-full bg-slate-100 flex items-center justify-center overflow-hidden">
+                <img
+                  src="/hr/MD-image.png"
+                  alt="Managing Director"
+                  className="w-full h-auto max-h-[460px] object-contain transition-transform duration-300 hover:scale-[1.02]"
+                />
+              </div>
               <div className="p-4 text-center">
-                <h3 className="text-lg text-[#29295e] font-semibold">
+                <h3 className="text-xl text-[#29295e] font-bold">
                   {t("Prasath Sridaran")}
                 </h3>
-                <p className="text-sm text-gray-500">{t("prasathrole")}</p>
+                <p className="text-sm font-medium text-gray-500 mt-0.5">{t("prasathrole")}</p>
               </div>
             </div>
           </div>
