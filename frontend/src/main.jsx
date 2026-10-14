@@ -11,13 +11,21 @@ window.fetch = async (resource, config = {}) => {
     const token = localStorage.getItem('token');
     if (token) {
       if (config.headers instanceof Headers) {
-        config.headers.append('Authorization', `Bearer ${token}`);
+        config.headers.set('Authorization', `Bearer ${token}`);
       } else {
         config.headers = { ...config.headers, Authorization: `Bearer ${token}` };
       }
     }
   }
-  return originalFetch(resource, config);
+  const response = await originalFetch(resource, config);
+  if ((response.status === 401 || response.status === 403) && urlStr && urlStr.includes('/api') && !urlStr.includes('/api/auth/login')) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    if (window.location.pathname !== '/login') {
+      window.location.href = '/login';
+    }
+  }
+  return response;
 };
 
 createRoot(document.getElementById("root")).render(

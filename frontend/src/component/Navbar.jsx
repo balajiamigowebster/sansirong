@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import Language from "./Launguage";
 
-function Navbar({ aboutScroll, t }) {
+function Navbar({ aboutScroll }) {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,219 +37,178 @@ function Navbar({ aboutScroll, t }) {
 
   return (
     <nav
-      className={`fixed top-0 text-white font-[500] left-0 w-full flex justify-between items-center px-8 md:px-5  md:pt-2  md:pl-18 pb-4 z-[9999] ${
-        location.pathname === "/about" && isScrolled
-          ? "backdrop-blur-md bg-black/50"
-          : "bg-transparent"
+      className={`fixed top-0 text-white font-[500] left-0 w-full flex justify-between items-center px-6 lg:px-10 py-3 z-[9999] transition-all duration-300 ${
+        (location.pathname === "/about" && isScrolled) || isScrolled
+          ? "backdrop-blur-md bg-black/60 shadow-lg"
+          : "bg-gradient-to-b from-black/70 via-black/30 to-transparent"
       }`}
     >
       {/* Logo */}
-      <div className="md:px-2 flex items-center">
+      <div className="flex items-center gap-3">
         <Link
           to="/"
-          className="text-4xl text-neutral-300 md:text-white  font-sans tracking-[2px] font-bold"
+          className="flex items-center group"
         >
           <img
             src="/logo1.png"
-            className="h-20 md:w-full mr-2 md:mr-0 md:h-20 "
+            alt="Sansirong Logo"
+            className="h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
-        <h1 className="pl-1  leading-[20px] md:px-2">
-          <span className="text-white  tracking-[2px] text-4xl font-[600] md:text-[40px]">
+        <div className="leading-tight">
+          <span className="text-white tracking-[2px] text-2xl lg:text-[28px] font-bold block">
             SANSIRONG
           </span>
-          <br />
-          <span className="text-white  text-[13px] font-[800] leading-[18px] md:text-[14px]">
-            {" "}
+          <span className="text-neutral-300 text-[10px] lg:text-[11px] font-semibold tracking-wider uppercase block">
             INTERNATIONAL PRIVATE LIMITED
           </span>
-        </h1>
-      </div>
-      <div className="hidden md:block">
-        <Language />
+        </div>
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden relative text-white drop-shadow-lg font-bold md:flex gap-8 md:gap-10 md:pr-14  ">
+      <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-[14px] xl:text-[15px] font-semibold tracking-wide">
         <Link
           to="/"
           onClick={closeMenu}
-          className="text-[15px] transition-all duration-300 ease-in-out hover:text-white"
-          style={{
-            transition: "all 0.3s ease-in-out",
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.textShadow =
-              "0 0 10px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.6)")
-          }
-          onMouseLeave={(e) => (e.target.style.textShadow = "none")}
+          className="relative py-1 transition-colors duration-300 hover:text-red-400"
         >
           HOME
-          {/* {t("home")} */}
           {location.pathname === "/" && (
-            <div className="h-[2px] bg-[#fa160e] w-full rounded-full"></div>
+            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
           )}
         </Link>
         <Link
           to="/about"
           onClick={closeMenu}
-          className="text-[15px] transition-all duration-300 ease-in-out hover:text-white"
-          style={{
-            transition: "all 0.3s ease-in-out",
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.textShadow =
-              "0 0 10px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.6)")
-          }
-          onMouseLeave={(e) => (e.target.style.textShadow = "none")}
+          className="relative py-1 transition-colors duration-300 hover:text-red-400"
         >
           ABOUT
-          {/* {t("about")} */}
           {location.pathname === "/about" && (
-            <div className="w-[50px] h-[2px] bg-[#fa160e] rounded-full"></div>
+            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
           )}
         </Link>
-        <Link
-          to="/oss"
-          onClick={closeMenu}
-          className="text-[15px] relative flex justify-center items-center md:gap-1 lg:gap-3 transition-all duration-300 ease-in-out hover:text-white"
-          onMouseEnter={(e) => {
-            setIsServicesOpen(!isServicesOpen);
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.textShadow = "none";
-            setIsServicesOpen(!isServicesOpen);
-          }}
+        <div
+          className="relative py-1 flex items-center gap-1.5 cursor-pointer transition-colors duration-300 hover:text-red-400"
+          onMouseEnter={() => setIsServicesOpen(true)}
+          onMouseLeave={() => setIsServicesOpen(false)}
         >
           <span>SERVICES</span>
-
-          {/* <span>{t("services")}</span> */}
           {isServicesOpen ? (
-            <FaChevronUp className="transition-all duration-300 text-white" />
+            <FaChevronUp className="text-xs transition-transform duration-300" />
           ) : (
-            <FaChevronDown className="transition-all duration-300" />
+            <FaChevronDown className="text-xs transition-transform duration-300" />
           )}
 
           <AnimatePresence>
             {isServicesOpen && (
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
-                className="absolute left-0 mt-2 w-80 p-5 space-y-5 backdrop-blur-lg top-5 bg-black/50  rounded-lg shadow-lg flex flex-col z-50  "
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute left-0 top-full mt-2 w-72 p-3 space-y-1 backdrop-blur-xl bg-black/85 border border-white/10 rounded-xl shadow-2xl flex flex-col z-50"
               >
                 <Link
                   to="/oss"
                   onClick={closeMenu}
-                  className="text-[15px] transition-all py-2 duration-300 ease-in-out hover:text-black px-2 rounded hover:bg-white"
+                  className="text-[13px] font-medium py-2 px-3 rounded-lg text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
                 >
                   ONSITE SUPPORT SERVICES (OSS)
                 </Link>
                 <Link
                   to="/trading"
                   onClick={closeMenu}
-                  className="text-[15px] transition-all py-2 duration-300 ease-in-out px-2 rounded hover:text-black hover:bg-white"
+                  className="text-[13px] font-medium py-2 px-3 rounded-lg text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
                 >
                   TRADING
                 </Link>
                 <Link
                   to="/language"
                   onClick={closeMenu}
-                  className="text-[15px] transition-all py-2 duration-300 ease-in-out px-2 rounded hover:text-black hover:bg-white"
+                  className="text-[13px] font-medium py-2 px-3 rounded-lg text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
                 >
                   LANGUAGE INTERPRETATION
                 </Link>
               </motion.div>
             )}
           </AnimatePresence>
-        </Link>
+        </div>
 
         <Link
           to="/contact"
           onClick={closeMenu}
-          className="text-[15px] transition-all duration-300 ease-in-out hover:text-white"
-          style={{
-            transition: "all 0.3s ease-in-out",
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.textShadow =
-              "0 0 10px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.6)")
-          }
-          onMouseLeave={(e) => (e.target.style.textShadow = "none")}
+          className="relative py-1 transition-colors duration-300 hover:text-red-400"
         >
           CONTACT
-          {/* {t("contact")} */}
+          {location.pathname === "/contact" && (
+            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
+          )}
         </Link>
         <Link
           to="/careers"
           onClick={closeMenu}
-          className="text-[15px] transition-all duration-300 ease-in-out hover:text-white"
-          style={{
-            transition: "all 0.3s ease-in-out",
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.textShadow =
-              "0 0 10px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.6)")
-          }
-          onMouseLeave={(e) => (e.target.style.textShadow = "none")}
+          className="relative py-1 transition-colors duration-300 hover:text-red-400"
         >
           CAREERS
-          {/* {t("careers")} */}
+          {location.pathname === "/careers" && (
+            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
+          )}
         </Link>
         <Link
           to="/dashboard"
           onClick={closeMenu}
-          className="text-[15px] transition-all duration-300 ease-in-out hover:text-white"
-          style={{
-            transition: "all 0.3s ease-in-out",
-          }}
-          onMouseEnter={(e) =>
-            (e.target.style.textShadow =
-              "0 0 10px rgba(0,0,0,0.6), 0 0 20px rgba(0,0,0,0.6), 0 0 30px rgba(0,0,0,0.6)")
-          }
-          onMouseLeave={(e) => (e.target.style.textShadow = "none")}
+          className="relative py-1 transition-colors duration-300 hover:text-red-400"
         >
           DASHBOARD
+          {location.pathname === "/dashboard" && (
+            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
+          )}
         </Link>
+
+        {/* Language selector integrated into navbar row */}
+        <Language />
+
+        {/* External Attendance & Report action button */}
         <a
           href="https://checkinplus.cloud/login"
           target="_blank"
           rel="noopener noreferrer"
           onClick={closeMenu}
-          className="text-[14px] px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-lg flex items-center gap-1.5"
-          style={{
-            transition: "all 0.3s ease-in-out",
-          }}
+          className="text-[13px] font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-md hover:shadow-red-500/30 transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 whitespace-nowrap ml-1"
         >
-          <span>Attendance & Report</span>
+          Attendance & Report
         </a>
       </div>
 
       {/* Mobile Hamburger Icon */}
-      <button
-        onClick={toggleMenu}
-        className="md:hidden text-2xl relative text-white cursor-pointer"
-      >
-        {isOpen ? <FaTimes /> : <FaBars />}
-      </button>
-      <div className="md:hidden top-36 -left-10 absolute ">
-        <Language />
+      <div className="flex items-center gap-3 lg:hidden">
+        <button
+          onClick={toggleMenu}
+          className="text-2xl text-white cursor-pointer p-2 focus:outline-none"
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
-
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-black/90 flex flex-col items-center justify-center gap-8 text-lg transform transition-transform duration-300 md:hidden ${
+        className={`fixed top-0 left-0 w-full h-full bg-black/95 flex flex-col items-center justify-center gap-6 text-lg transform transition-transform duration-300 lg:hidden z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <button onClick={toggleMenu} className="flex justify-end">
+        <button 
+          onClick={toggleMenu} 
+          className="absolute top-6 right-6 text-white text-2xl p-2 cursor-pointer"
+          aria-label="Close Menu"
+        >
           <FaTimes />
         </button>
-        <Link to="/" onClick={closeMenu} className={` text-[15px] `}>
+        <div className="mb-2">
+          <Language />
+        </div>
+        <Link to="/" onClick={closeMenu} className="text-[15px] font-semibold text-white">
           HOME
-          {/* {t("home")} */}
           {location.pathname === "/" && (
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
           )}
@@ -274,31 +233,29 @@ function Navbar({ aboutScroll, t }) {
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
           )}
         </Link>
-        <Link to="/language" onClick={closeMenu} className={` text-[15px]`}>
+        <Link to="/language" onClick={closeMenu} className="text-[15px]">
           LANGUAGE INTERPRETATION
-          {location.pathname === "/launguage" && (
+          {location.pathname === "/language" && (
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
           )}
         </Link>
-        <Link to="/contact" onClick={closeMenu} className={` text-[15px]`}>
+        <Link to="/contact" onClick={closeMenu} className="text-[15px]">
           CONTACT
-          {/* {t("contact")} */}
           {location.pathname === "/contact" && (
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
           )}
         </Link>
         <Link
-          //to="/careers"
+          to="/careers"
           onClick={closeMenu}
-          className={` text-[15px]`}
+          className="text-[15px]"
         >
           CAREERS
-          {/* {t("careers")} */}
-          {location.pathname === "/contact" && (
+          {location.pathname === "/careers" && (
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
           )}
         </Link>
-        <Link to="/dashboard" onClick={closeMenu} className={` text-[15px]`}>
+        <Link to="/dashboard" onClick={closeMenu} className="text-[15px]">
           DASHBOARD
           {location.pathname === "/dashboard" && (
             <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>

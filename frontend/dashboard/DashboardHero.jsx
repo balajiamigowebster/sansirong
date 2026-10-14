@@ -91,6 +91,19 @@ const DashboardHero = () => {
           <BsClipboard className="text-base transform group-hover:scale-110 transition-transform duration-300" />
           <span>Interview List</span>
         </button>
+
+        {/* Logout Button */}
+        <button
+          onClick={() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            window.location.href = '/login';
+          }}
+          className="flex items-center space-x-1.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-lg px-4 py-2.5 text-sm font-bold transition-all duration-200 cursor-pointer"
+          title="Logout"
+        >
+          <span>Logout</span>
+        </button>
       </div>
 
       <InterviewListModal 

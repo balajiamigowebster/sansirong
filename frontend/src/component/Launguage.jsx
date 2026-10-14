@@ -17,16 +17,16 @@ const Language = () => {
   };
 
   return (
-    <div className="md:top-8 -rotate-90 md:rotate-0 right-0 md:right-1/2 bg-transparent p-1 z-[9999]">
+    <div className="flex items-center">
       <select
         aria-label="Select Language"
         onChange={(e) => changeLanguage(e.target.value)}
         value={i18n.language || "en"}
-        className="border border-gray-300 w-[100px] md:w-[150px] text-black text-[15px] rounded p-1"
+        className="bg-black/40 hover:bg-black/60 text-white text-[13px] font-medium border border-white/20 hover:border-white/40 rounded-lg px-2.5 py-1.5 outline-none cursor-pointer backdrop-blur-md transition-all duration-200"
       >
         {languages.map((lang) => (
           <option
-            className="bg-white text-black"
+            className="bg-neutral-900 text-white"
             key={lang.code}
             value={lang.code}
           >

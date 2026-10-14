@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { AnimatePresence, motion } from "framer-motion";
-
-import Launguage from "../Launguage";
+import { AnimatePresence } from "framer-motion";
 import Language from "../Launguage";
 
 function AboutNavbar() {
@@ -17,10 +15,6 @@ function AboutNavbar() {
     { title: "HOME", to: "/" },
     { title: "ABOUT", to: "/about" },
     { title: "SERVICES" },
-    // { title: "ONSITE SUPPORT SERVICES(OSS)", to: "/oss" },
-    // { title: "TRADING", to: "/trading" },
-
-    // { title: "LAUNGUAGE INTERPRETATION", to: "/launguage" },
     { title: "CONTACT", to: "/contact" },
     { title: "CAREERS", to: "/careers" },
     { title: "DASHBOARD", to: "/dashboard" },
@@ -29,10 +23,8 @@ function AboutNavbar() {
   const mobNavitems = [
     { title: "HOME", to: "/" },
     { title: "ABOUT", to: "/about" },
-
     { title: "ONSITE SUPPORT SERVICES(OSS)", to: "/oss" },
     { title: "TRADING", to: "/trading" },
-
     { title: "LANGUAGE INTERPRETATION", to: "/language" },
     { title: "CONTACT", to: "/contact" },
     { title: "CAREERS", to: "/careers" },
@@ -57,43 +49,41 @@ function AboutNavbar() {
 
   return (
     <nav
-      className={`top-0 left-0 md:pt-1 w-full flex justify-between items-center px-8  pb-4 z-50 transition-all duration-300
-        md:backdrop-blur-lgv fixed md:relative backdrop-blur-sm md:bg-white/5 shadow-md font-bold  text-[#f30d0d] 
-         
-      `}
+      className={`top-0 left-0 w-full flex justify-between items-center px-6 lg:px-10 py-3 z-50 transition-all duration-300 font-bold text-white ${
+        isScrolled
+          ? "fixed backdrop-blur-md bg-black/60 shadow-lg"
+          : "fixed md:relative backdrop-blur-sm md:bg-white/5 shadow-md"
+      }`}
     >
       {/* Logo */}
       {/* <Link to="/" className="text-4xl font-sans tracking-[2px] font-bold">
         <img src="/logo.png" className="h-20 md:h-20" />
       </Link> */}
-      <div className="md:px-1 flex items-center">
+      <div className="flex items-center gap-3">
         <Link
           to="/"
-          className="text-4xl text-neutral-300 md:text-white  font-sans tracking-[2px] font-bold"
+          className="flex items-center group"
         >
           <img
             src="/logo1.png"
-            className="h-20 md:w-full mr-2 md:mr-0 md:h-20 "
+            alt="Sansirong Logo"
+            className="h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
-        <h1 className="pl-1  leading-[20px] md:px-2">
-          <span className="text-white  tracking-[2px] text-4xl font-[600] md:text-[40px]">
+        <div className="leading-tight">
+          <span className="text-white tracking-[2px] text-2xl lg:text-[28px] font-bold block">
             SANSIRONG
           </span>
-          <br />
-          <span className="text-white  text-[13px] font-[800] leading-[18px] md:text-[14px]">
-            {" "}
+          <span className="text-neutral-300 text-[10px] lg:text-[11px] font-semibold tracking-wider uppercase block">
             INTERNATIONAL PRIVATE LIMITED
           </span>
-        </h1>
+        </div>
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden required: md:flex justify-end  md:pr-14 md:gap-10  md:text-[15px]">
-        <div className="absolute top-6 left-[480px] ">
-          <Language />
-        </div>
-        {navitems.map((page, index) => (
+      <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-[14px] xl:text-[15px] font-semibold tracking-wide">
+        <Language />
+        {navitems.map((page) => (
           <div key={page.title} className="relative">
             {page.title === "SERVICES" ? (
               <div
@@ -161,9 +151,8 @@ function AboutNavbar() {
                   {page.title}
                 </Link>
                 {location.pathname === page.to && (
-                  <div className="w-full h-[2px]  bg-[#ff746f]   transition-all duration-300 ease-in-out rounded-full"></div>
+                  <div className="w-full h-[2px] bg-[#ff746f] transition-all duration-300 ease-in-out rounded-full"></div>
                 )}
-                {page.title === "SERVICES"}
               </div>
             )}
           </div>
@@ -174,36 +163,39 @@ function AboutNavbar() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={closeMenu}
-          className="text-[13px] px-3 py-1.5 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-300 ease-in-out shadow-md hover:shadow-lg flex items-center"
+          className="text-[13px] font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-md hover:shadow-red-500/30 transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 whitespace-nowrap ml-1"
         >
           Attendance & Report
         </a>
-
-        {/* <div>
-          <Launguage />
-        </div> */}
       </div>
 
       {/* Mobile Hamburger Icon */}
-      <button
-        onClick={toggleMenu}
-        className="md:hidden relative text-2xl cursor-pointer"
-      >
-        {isOpen ? <FaTimes /> : <FaBars className="text-red-700" />}
-      </button>
-      <div className="md:hidden top-36 -left-10 absolute ">
-        <Language />
+      <div className="flex items-center gap-3 lg:hidden">
+        <button
+          onClick={toggleMenu}
+          className="text-2xl text-white cursor-pointer p-2 focus:outline-none"
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0  h-screen left-0 w-full bg-black/90 flex flex-col items-center justify-center gap-8 text-lg transform transition-transform duration-300 md:hidden ${
+        className={`fixed top-0 left-0 w-full h-full bg-black/95 flex flex-col items-center justify-center gap-6 text-lg transform transition-transform duration-300 lg:hidden z-50 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <button onClick={toggleMenu} className="flex justify-end">
-          <FaTimes className="text-white" />
+        <button 
+          onClick={toggleMenu} 
+          className="absolute top-6 right-6 text-white text-2xl p-2 cursor-pointer"
+          aria-label="Close Menu"
+        >
+          <FaTimes />
         </button>
+        <div className="mb-2">
+          <Language />
+        </div>
         {mobNavitems.map((page) => (
           <div key={page.title} className="flex flex-col items-center">
             <Link

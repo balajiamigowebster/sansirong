@@ -28,7 +28,7 @@ const DashboardDemo = () => {
   useEffect(() => {
     fetch(`${config.API_BASE_URL}/api/employees`)
       .then(res => res.json())
-      .then(data => setEmployees(data || []))
+      .then(data => setEmployees(Array.isArray(data) ? data : []))
       .catch(err => console.error(err));
   }, []);
 
