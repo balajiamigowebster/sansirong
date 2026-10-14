@@ -37,158 +37,181 @@ function Navbar({ aboutScroll }) {
 
   return (
     <nav
-      className={`fixed top-0 text-white font-[500] left-0 w-full flex justify-between items-center px-6 lg:px-10 py-3 z-[9999] transition-all duration-300 ${
+      className={`fixed top-0 text-white font-[500] left-0 w-full z-[9999] transition-all duration-300 ${
         (location.pathname === "/about" && isScrolled) || isScrolled
-          ? "backdrop-blur-md bg-black/60 shadow-lg"
-          : "bg-gradient-to-b from-black/70 via-black/30 to-transparent"
+          ? "backdrop-blur-md bg-black/75 shadow-xl py-2.5 px-6 lg:px-10"
+          : "bg-gradient-to-b from-black/85 via-black/50 to-transparent py-4 px-6 lg:px-10"
       }`}
     >
-      {/* Logo */}
-      <div className="flex items-center gap-3">
-        <Link
-          to="/"
-          className="flex items-center group"
-        >
-          <img
-            src="/logo1.png"
-            alt="Sansirong Logo"
-            className="h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-          />
-        </Link>
-        <div className="leading-tight">
-          <span className="text-white tracking-[2px] text-2xl lg:text-[28px] font-bold block">
-            SANSIRONG
-          </span>
-          <span className="text-neutral-300 text-[10px] lg:text-[11px] font-semibold tracking-wider uppercase block">
-            INTERNATIONAL PRIVATE LIMITED
-          </span>
-        </div>
-      </div>
+      <div className="max-w-7xl mx-auto flex flex-col items-center">
+        {/* Top Row: Logo & Title Centered */}
+        <div className="w-full flex items-center justify-between lg:justify-center relative">
+          <div className="flex items-center gap-4 mx-auto">
+            <Link
+              to="/"
+              className="flex items-center group"
+            >
+              <img
+                src="/logo1.png"
+                alt="Sansirong Logo"
+                className="h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-lg"
+              />
+            </Link>
+            <div className="flex flex-col justify-center text-center sm:text-left">
+              <span className="text-white tracking-[3px] text-3xl lg:text-[40px] font-extrabold leading-none">
+                SANSIRONG
+              </span>
+              <span className="text-neutral-200 text-[11px] lg:text-[13px] font-bold tracking-[2.5px] uppercase mt-1.5 leading-none">
+                INTERNATIONAL PRIVATE LIMITED
+              </span>
+            </div>
+          </div>
 
-      {/* Desktop Menu */}
-      <div className="hidden lg:flex items-center gap-5 xl:gap-7 text-[14px] xl:text-[15px] font-semibold tracking-wide">
-        <Link
-          to="/"
-          onClick={closeMenu}
-          className="relative py-1 transition-colors duration-300 hover:text-red-400"
-        >
-          HOME
-          {location.pathname === "/" && (
-            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
-          )}
-        </Link>
-        <Link
-          to="/about"
-          onClick={closeMenu}
-          className="relative py-1 transition-colors duration-300 hover:text-red-400"
-        >
-          ABOUT
-          {location.pathname === "/about" && (
-            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
-          )}
-        </Link>
-        <div
-          className="relative py-1 flex items-center gap-1.5 cursor-pointer transition-colors duration-300 hover:text-red-400"
-          onMouseEnter={() => setIsServicesOpen(true)}
-          onMouseLeave={() => setIsServicesOpen(false)}
-        >
-          <span>SERVICES</span>
-          {isServicesOpen ? (
-            <FaChevronUp className="text-xs transition-transform duration-300" />
-          ) : (
-            <FaChevronDown className="text-xs transition-transform duration-300" />
-          )}
-
-          <AnimatePresence>
-            {isServicesOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 8 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute left-0 top-full mt-2 w-72 p-3 space-y-1 backdrop-blur-xl bg-black/85 border border-white/10 rounded-xl shadow-2xl flex flex-col z-50"
-              >
-                <Link
-                  to="/oss"
-                  onClick={closeMenu}
-                  className="text-[13px] font-medium py-2 px-3 rounded-lg text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
-                >
-                  ONSITE SUPPORT SERVICES (OSS)
-                </Link>
-                <Link
-                  to="/trading"
-                  onClick={closeMenu}
-                  className="text-[13px] font-medium py-2 px-3 rounded-lg text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
-                >
-                  TRADING
-                </Link>
-                <Link
-                  to="/language"
-                  onClick={closeMenu}
-                  className="text-[13px] font-medium py-2 px-3 rounded-lg text-neutral-200 hover:text-white hover:bg-white/10 transition-colors"
-                >
-                  LANGUAGE INTERPRETATION
-                </Link>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Mobile Hamburger Icon (Absolute right on mobile) */}
+          <div className="flex items-center gap-3 lg:hidden absolute right-0 top-1/2 -translate-y-1/2">
+            <button
+              onClick={toggleMenu}
+              className="text-2xl text-white cursor-pointer p-2 focus:outline-none"
+              aria-label="Toggle Menu"
+            >
+              {isOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
 
-        <Link
-          to="/contact"
-          onClick={closeMenu}
-          className="relative py-1 transition-colors duration-300 hover:text-red-400"
-        >
-          CONTACT
-          {location.pathname === "/contact" && (
-            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
-          )}
-        </Link>
-        <Link
-          to="/careers"
-          onClick={closeMenu}
-          className="relative py-1 transition-colors duration-300 hover:text-red-400"
-        >
-          CAREERS
-          {location.pathname === "/careers" && (
-            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
-          )}
-        </Link>
-        <Link
-          to="/dashboard"
-          onClick={closeMenu}
-          className="relative py-1 transition-colors duration-300 hover:text-red-400"
-        >
-          DASHBOARD
-          {location.pathname === "/dashboard" && (
-            <div className="h-[2px] bg-[#fa160e] w-full rounded-full absolute bottom-0 left-0"></div>
-          )}
-        </Link>
+        {/* Bottom Row: Menus Centered and brought slightly down */}
+        <div className="hidden lg:flex items-center justify-center gap-2 xl:gap-2.5 text-[13px] font-bold tracking-wider mt-3.5 pt-2 border-t border-white/10 w-full">
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className={`px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap ${
+              location.pathname === "/"
+                ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            HOME
+          </Link>
 
-        {/* Language selector integrated into navbar row */}
-        <Language />
+          <Link
+            to="/about"
+            onClick={closeMenu}
+            className={`px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap ${
+              location.pathname === "/about"
+                ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            ABOUT
+          </Link>
 
-        {/* External Attendance & Report action button */}
-        <a
-          href="https://checkinplus.cloud/login"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={closeMenu}
-          className="text-[13px] font-semibold px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-md hover:shadow-red-500/30 transition-all duration-300 ease-in-out transform hover:-translate-y-0.5 whitespace-nowrap ml-1"
-        >
-          Attendance & Report
-        </a>
-      </div>
+          <div
+            className="relative"
+            onMouseEnter={() => setIsServicesOpen(true)}
+            onMouseLeave={() => setIsServicesOpen(false)}
+          >
+            <div
+              className={`px-4 py-2 rounded-full transition-all duration-200 uppercase flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
+                ["/oss", "/trading", "/language"].includes(location.pathname)
+                  ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
+                  : "text-white/90 hover:text-white hover:bg-white/10"
+              }`}
+            >
+              <span>SERVICES</span>
+              {isServicesOpen ? (
+                <FaChevronUp className="text-[11px] transition-transform duration-200" />
+              ) : (
+                <FaChevronDown className="text-[11px] transition-transform duration-200" />
+              )}
+            </div>
 
-      {/* Mobile Hamburger Icon */}
-      <div className="flex items-center gap-3 lg:hidden">
-        <button
-          onClick={toggleMenu}
-          className="text-2xl text-white cursor-pointer p-2 focus:outline-none"
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </button>
+            <AnimatePresence>
+              {isServicesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 p-2.5 space-y-1 backdrop-blur-xl bg-black/90 border border-white/15 rounded-2xl shadow-2xl flex flex-col z-50 text-left"
+                >
+                  <Link
+                    to="/oss"
+                    onClick={closeMenu}
+                    className="text-[12px] font-bold py-2 px-3 rounded-xl text-neutral-200 hover:text-white hover:bg-red-600/80 transition-colors uppercase"
+                  >
+                    ONSITE SUPPORT SERVICES (OSS)
+                  </Link>
+                  <Link
+                    to="/trading"
+                    onClick={closeMenu}
+                    className="text-[12px] font-bold py-2 px-3 rounded-xl text-neutral-200 hover:text-white hover:bg-red-600/80 transition-colors uppercase"
+                  >
+                    TRADING
+                  </Link>
+                  <Link
+                    to="/language"
+                    onClick={closeMenu}
+                    className="text-[12px] font-bold py-2 px-3 rounded-xl text-neutral-200 hover:text-white hover:bg-red-600/80 transition-colors uppercase"
+                  >
+                    LANGUAGE INTERPRETATION
+                  </Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          <Link
+            to="/contact"
+            onClick={closeMenu}
+            className={`px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap ${
+              location.pathname === "/contact"
+                ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            CONTACT
+          </Link>
+
+          <Link
+            to="/careers"
+            onClick={closeMenu}
+            className={`px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap ${
+              location.pathname === "/careers"
+                ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            CAREERS
+          </Link>
+
+          <Link
+            to="/dashboard"
+            onClick={closeMenu}
+            className={`px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap ${
+              location.pathname === "/dashboard"
+                ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            DASHBOARD
+          </Link>
+
+          {/* External Attendance & Report action button - Equal Pill Size & Style */}
+          <a
+            href="https://checkinplus.cloud/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-md hover:shadow-red-500/40 transition-all duration-200 transform hover:-translate-y-0.5 whitespace-nowrap uppercase font-extrabold"
+          >
+            ATTENDANCE & REPORT
+          </a>
+
+          {/* Language selector in the last position after menus */}
+          <div className="pl-1">
+            <Language />
+          </div>
+        </div>
       </div>
 
       {/* Mobile Menu */}
