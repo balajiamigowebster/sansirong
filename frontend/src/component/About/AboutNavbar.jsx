@@ -52,7 +52,7 @@ function AboutNavbar() {
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         {/* Top Row: Logo & Title Centered */}
         <div className="w-full flex items-center justify-between lg:justify-center relative">
-          <div className="flex items-center gap-4 mx-auto">
+          <div className="flex items-center gap-6 md:gap-7 mx-auto">
             <Link
               to="/"
               className="flex items-center group"
@@ -60,14 +60,14 @@ function AboutNavbar() {
               <img
                 src="/logo1.png"
                 alt="Sansirong Logo"
-                className="h-20 lg:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-lg"
+                className="h-24 sm:h-28 lg:h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xl"
               />
             </Link>
             <div className="flex flex-col justify-center text-center sm:text-left">
-              <span className="text-white tracking-[3px] text-3xl lg:text-[40px] font-extrabold leading-none">
+              <span className="text-white tracking-[4px] sm:tracking-[6px] text-4xl sm:text-5xl lg:text-[62px] font-black leading-none drop-shadow-md">
                 SANSIRONG
               </span>
-              <span className="text-neutral-200 text-[11px] lg:text-[13px] font-bold tracking-[2.5px] uppercase mt-1.5 leading-none">
+              <span className="text-neutral-200 text-[12px] sm:text-[14px] lg:text-[17px] font-extrabold tracking-[3px] sm:tracking-[5px] uppercase mt-2 sm:mt-2.5 leading-none">
                 INTERNATIONAL PRIVATE LIMITED
               </span>
             </div>
