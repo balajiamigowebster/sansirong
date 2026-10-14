@@ -96,7 +96,7 @@ const Contact = () => {
         {/* Left Side - Image */}
         <div className="flex-1">
           <img
-            src="/contact/c1.jpeg"
+            src="/contact/office-img.jpeg"
             alt="Office Building"
             className="rounded-xl shadow-lg w-full md:h-[460px] object-cover"
           />
@@ -129,7 +129,7 @@ const Contact = () => {
           <div className="flex items-start mb-6 text-gray-700">
             <FaMapMarkerAlt className="text-pink-500 mr-3 mt-1" />
             <p className="text-sm leading-relaxed">
-              4, Maple Building, Thiriveni nagar, Opposite to Saraswathi Statue
+              5, Maple Building, Thiriveni nagar, Opposite to Saraswathi Statue
               Vadakkupattu village Oragadam Industrial Area, Kancheepuram, Tamil
               Nadu 603204
             </p>

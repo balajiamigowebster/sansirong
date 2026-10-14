@@ -202,13 +202,13 @@ function AboutNavbar() {
             DASHBOARD
           </Link>
 
-          {/* External Attendance & Report action button - Equal Pill Size & Style */}
+          {/* External Attendance & Report action button - Matches other menu pills */}
           <a
             href="https://checkinplus.cloud/login"
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
-            className="px-4 py-2 rounded-full bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white shadow-md hover:shadow-red-500/40 transition-all duration-200 transform hover:-translate-y-0.5 whitespace-nowrap uppercase font-extrabold"
+            className="px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap text-white/90 hover:text-white hover:bg-white/10 active:bg-red-600 active:text-white"
           >
             ATTENDANCE & REPORT
           </a>
