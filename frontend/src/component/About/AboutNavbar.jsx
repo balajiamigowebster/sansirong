@@ -50,34 +50,34 @@ function AboutNavbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex flex-col items-center">
-        {/* Top Row: Logo & Title Centered */}
-        <div className="w-full flex items-center justify-between lg:justify-center relative">
-          <div className="flex items-center gap-6 md:gap-7 mx-auto">
+        {/* Top Row: Logo & Title Centered on desktop, space-between on mobile */}
+        <div className="w-full flex items-center justify-between lg:justify-center relative pr-12 sm:pr-14 lg:pr-0">
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-7 mx-auto lg:mx-auto">
             <Link
               to="/"
-              className="flex items-center group"
+              className="flex items-center group shrink-0"
             >
               <img
                 src="/logo1.png"
                 alt="Sansirong Logo"
-                className="h-24 sm:h-28 lg:h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xl"
+                className="h-14 sm:h-18 md:h-24 lg:h-32 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xl"
               />
             </Link>
-            <div className="flex flex-col justify-center text-center sm:text-left">
-              <span className="text-white tracking-[4px] sm:tracking-[6px] text-4xl sm:text-5xl lg:text-[62px] font-black leading-none drop-shadow-md">
+            <div className="flex flex-col justify-center text-left">
+              <span className="text-white tracking-[2px] sm:tracking-[4px] lg:tracking-[6px] text-2xl sm:text-3xl md:text-5xl lg:text-[62px] font-black leading-none drop-shadow-md">
                 SANSIRONG
               </span>
-              <span className="text-neutral-200 text-[12px] sm:text-[14px] lg:text-[17px] font-extrabold tracking-[3px] sm:tracking-[5px] uppercase mt-2 sm:mt-2.5 leading-none">
+              <span className="text-neutral-200 text-[9.5px] sm:text-[11.5px] md:text-[14px] lg:text-[17px] font-extrabold tracking-[1.5px] sm:tracking-[3px] lg:tracking-[5px] uppercase mt-1 sm:mt-1.5 lg:mt-2.5 leading-none">
                 INTERNATIONAL PRIVATE LIMITED
               </span>
             </div>
           </div>
 
-          {/* Mobile Hamburger Icon (Absolute right on mobile) */}
-          <div className="flex items-center gap-3 lg:hidden absolute right-0 top-1/2 -translate-y-1/2">
+          {/* Mobile Hamburger Icon (Clear of logo & title) */}
+          <div className="flex items-center lg:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10">
             <button
               onClick={toggleMenu}
-              className="text-2xl text-white cursor-pointer p-2 focus:outline-none"
+              className="text-2xl text-white cursor-pointer p-1.5 focus:outline-none bg-black/40 rounded-lg backdrop-blur-sm border border-white/10 shadow-md"
               aria-label="Toggle Menu"
             >
               {isOpen ? <FaTimes /> : <FaBars />}
@@ -220,45 +220,131 @@ function AboutNavbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-black/95 flex flex-col items-center justify-center gap-6 text-lg transform transition-transform duration-300 lg:hidden z-50 ${
+        className={`fixed inset-0 w-full h-screen bg-black/95 backdrop-blur-2xl flex flex-col items-center justify-center px-6 py-10 transform transition-transform duration-300 lg:hidden z-[9999] overflow-y-auto ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <button 
           onClick={toggleMenu} 
-          className="absolute top-6 right-6 text-white text-2xl p-2 cursor-pointer"
+          className="absolute top-6 right-6 text-white text-2xl p-2.5 rounded-full bg-white/10 hover:bg-white/20 cursor-pointer transition-colors"
           aria-label="Close Menu"
         >
           <FaTimes />
         </button>
-        <div className="mb-2">
-          <Language />
-        </div>
-        {mobNavitems.map((page) => (
-          <div key={page.title} className="flex flex-col items-center">
-            <Link
-              to={page.to}
-              className="text-white text-[15px]"
-              onClick={closeMenu}
-            >
-              {page.title}
-            </Link>
-            {location.pathname === page.to && (
-              <div className="w-full h-[2px] bg-[#fa160e] rounded-full"></div>
-            )}
+
+        <div className="flex flex-col items-center w-full max-w-xs space-y-2.5 text-center mt-6">
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            HOME
+          </Link>
+
+          <Link
+            to="/about"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/about"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            ABOUT
+          </Link>
+
+          <Link
+            to="/oss"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[13px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/oss"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            ONSITE SUPPORT SERVICES (OSS)
+          </Link>
+
+          <Link
+            to="/trading"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/trading"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            TRADING
+          </Link>
+
+          <Link
+            to="/language"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[13px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/language"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            LANGUAGE INTERPRETATION
+          </Link>
+
+          <Link
+            to="/contact"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/contact"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            CONTACT
+          </Link>
+
+          <Link
+            to="/careers"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/careers"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            CAREERS
+          </Link>
+
+          <Link
+            to="/dashboard"
+            onClick={closeMenu}
+            className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/dashboard"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            DASHBOARD
+          </Link>
+
+          <a
+            href="https://checkinplus.cloud/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMenu}
+            className="w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase text-white/90 hover:text-white hover:bg-white/10 active:bg-red-600 active:text-white transition-all duration-200"
+          >
+            ATTENDANCE & REPORT
+          </a>
+
+          <div className="pt-3 w-full flex justify-center">
+            <Language />
           </div>
-        ))}
-        <a
-          href="https://checkinplus.cloud/login"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={closeMenu}
-          className="text-[14px] px-4 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-semibold shadow-md text-center"
-        >
-          Attendance & Report
-        </a>
+        </div>
       </div>
     </nav>
   );
