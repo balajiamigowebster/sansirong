@@ -31,7 +31,7 @@ function Login() {
       if (response.status === 200) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', response.data.username);
-        navigate('/dashboard');
+        window.location.href = 'https://sansirong-dashboard.netlify.app/';
       }
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
