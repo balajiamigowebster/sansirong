@@ -27,18 +27,6 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-const ExternalDashboardRedirect = () => {
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token && token !== "undefined" && token !== "null" && token.trim() !== "") {
-      window.location.replace("https://sansirong-dashboard.netlify.app/");
-    } else {
-      window.location.replace("/login");
-    }
-  }, []);
-  return null;
-};
-
 const App = () => {
   const validNavbar = ["/"];
   const location = useLocation();
@@ -83,7 +71,7 @@ const App = () => {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <ExternalDashboardRedirect />
+              <Dashboard />
             </ProtectedRoute>
           }
         />
