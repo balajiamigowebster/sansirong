@@ -180,10 +180,6 @@ const Trading = () => {
     },
   ];
 
-  const getRandomColor = () => {
-    return colors[Math.floor(Math.random() * colors.length)];
-  };
-
   return (
     <div className=" h-screen overflow-y-scroll">
       {/* Navbar */}
