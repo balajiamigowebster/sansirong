@@ -185,10 +185,10 @@ function Navbar({ aboutScroll }) {
           </Link>
 
           <Link
-            to="/dashboard"
+            to="/login"
             onClick={closeMenu}
             className={`px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap ${
-              location.pathname === "/dashboard"
+              location.pathname === "/login" || location.pathname === "/dashboard"
                 ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
                 : "text-white/90 hover:text-white hover:bg-white/10"
             }`}
@@ -314,10 +314,10 @@ function Navbar({ aboutScroll }) {
           </Link>
 
           <Link
-            to="/dashboard"
+            to="/login"
             onClick={closeMenu}
             className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
-              location.pathname === "/dashboard"
+              location.pathname === "/login" || location.pathname === "/dashboard"
                 ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
                 : "text-white/90 hover:text-white hover:bg-white/10"
             }`}
