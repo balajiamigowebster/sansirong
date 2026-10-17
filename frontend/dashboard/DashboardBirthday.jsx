@@ -24,7 +24,7 @@ const DashboardBirthday = () => {
       <div className="flex items-center gap-2 mb-6" data-aos="fade-down">
         <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-rose-600 rotate-45 shadow-sm shadow-red-500/50"></div>
         <h2 className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-500 font-extrabold tracking-widest text-sm uppercase">
-          Upcoming Birthdays
+          Upcoming Birthday
         </h2>
       </div>
 
