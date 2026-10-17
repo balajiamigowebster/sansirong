@@ -17,6 +17,14 @@ import Dashboard from "../dashboard/Dashboard";
 import Login from "./component/Login";
 import translations from "./translation.json";
 
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
+
 const ExternalDashboardRedirect = () => {
   useEffect(() => {
     window.location.replace("https://sansirong-dashboard.netlify.app/");
@@ -64,7 +72,14 @@ const App = () => {
         <Route path="/language" element={<Languageinterpretation t={t} />} />
         <Route path="/trading" element={<Trading t={t} />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<ExternalDashboardRedirect />} />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <ExternalDashboardRedirect />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

@@ -190,15 +190,17 @@ function AboutNavbar() {
             CAREERS
           </Link>
 
-          <a
-            href="https://sansirong-dashboard.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/dashboard"
             onClick={closeMenu}
-            className="px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap text-white/90 hover:text-white hover:bg-white/10"
+            className={`px-4 py-2 rounded-full transition-all duration-200 uppercase whitespace-nowrap ${
+              location.pathname === "/dashboard"
+                ? "bg-red-600 text-white shadow-md shadow-red-600/30 font-extrabold"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
           >
             DASHBOARD
-          </a>
+          </Link>
 
           {/* External Attendance & Report action button - Matches other menu pills */}
           <a
@@ -317,15 +319,17 @@ function AboutNavbar() {
             CAREERS
           </Link>
 
-          <a
-            href="https://sansirong-dashboard.netlify.app/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/dashboard"
             onClick={closeMenu}
-            className="w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200"
+            className={`w-full py-2.5 px-6 rounded-full text-[14px] font-bold tracking-wider uppercase transition-all duration-200 ${
+              location.pathname === "/dashboard"
+                ? "bg-red-600 text-white shadow-lg shadow-red-600/40"
+                : "text-white/90 hover:text-white hover:bg-white/10"
+            }`}
           >
             DASHBOARD
-          </a>
+          </Link>
 
           <a
             href="https://checkinplus.cloud/login"
