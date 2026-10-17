@@ -19,7 +19,9 @@ import translations from "./translation.json";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
-  if (!token) {
+  if (!token || token === "undefined" || token === "null" || token.trim() === "") {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
     return <Navigate to="/login" replace />;
   }
   return children;
@@ -27,7 +29,12 @@ const ProtectedRoute = ({ children }) => {
 
 const ExternalDashboardRedirect = () => {
   useEffect(() => {
-    window.location.replace("https://sansirong-dashboard.netlify.app/");
+    const token = localStorage.getItem("token");
+    if (token && token !== "undefined" && token !== "null" && token.trim() !== "") {
+      window.location.replace("https://sansirong-dashboard.netlify.app/");
+    } else {
+      window.location.replace("/login");
+    }
   }, []);
   return null;
 };
