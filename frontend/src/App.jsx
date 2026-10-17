@@ -1,4 +1,5 @@
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Home from "./component/Home/Home";
 import Navbar from "./component/Navbar";
 import About from "./component/About/About";
@@ -15,14 +16,12 @@ import Language from "./component/Launguage";
 import Dashboard from "../dashboard/Dashboard";
 import Login from "./component/Login";
 import translations from "./translation.json";
-import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-  return children;
+const ExternalDashboardRedirect = () => {
+  useEffect(() => {
+    window.location.replace("https://sansirong-dashboard.netlify.app/");
+  }, []);
+  return null;
 };
 
 const App = () => {
@@ -65,7 +64,7 @@ const App = () => {
         <Route path="/language" element={<Languageinterpretation t={t} />} />
         <Route path="/trading" element={<Trading t={t} />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/dashboard" element={<ExternalDashboardRedirect />} />
       </Routes>
     </>
   );
