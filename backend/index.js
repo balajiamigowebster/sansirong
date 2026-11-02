@@ -17,7 +17,10 @@ const corsOptions = {
     'http://localhost:3000', // Alternative local frontend
     'https://sansirong.vercel.app', // Vercel deployment
     'https://www.sansirong.com', // Production domain
-    'https://sansirong.com'
+    'https://sansirong.com',
+    'https://sansirong.in',
+    'https://www.sansirong.in',
+    'https://sansirong.in/'
   ],
   credentials: true
 };
